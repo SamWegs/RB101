@@ -1,0 +1,16 @@
+# pseudo_code_2.txt
+
+2. A method that takes an array of strings, and returns a string that is all those
+strings concatenated together.
+
+START
+
+SET array = [strings]
+
+SET iterator = 0
+
+WHILE iterator <= length of array
+  PRINTS string
+  iterator += 1
+
+END

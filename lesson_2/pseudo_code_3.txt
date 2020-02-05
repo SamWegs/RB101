@@ -1,0 +1,17 @@
+# pseudo_code_3.txt
+
+3. a method that takes an array of integers, and returns a new array with every
+other element.
+
+START
+
+SET array = [integers]
+
+SET iterator = 0
+
+IF iterator.even?
+  PRINT integer
+  iterator += 1
+ELSE
+  iterator += 1
+END
