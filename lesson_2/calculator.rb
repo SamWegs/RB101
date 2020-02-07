@@ -1,14 +1,11 @@
-# ask the user for two numbers
-# ask the user for an operation to perform
-# perform the operation on the two numbers
-# output the result
+# calculator.rb
 
 def prompt(message)
   Kernel.puts("=> #{message}")
 end
 
 def valid_number?(num)
-  num.to_i() != 0 # "hi".to_i == 0. Checked in irb, clears words from allowing through
+  num.to_i().is_a(Numeric) # fix this line
 end
 
 def operation_to_message(op)
@@ -23,7 +20,6 @@ def operation_to_message(op)
     'Dividing'
   end
 end
-
 
 prompt("Welcome to Calculator! Enter your name:")
 
@@ -89,15 +85,15 @@ loop do # main loop
   prompt("#{operation_to_message(operator)} the two numbers...")
 
   result = case operator
-          when '1'
-            result = number1.to_i() + number2.to_i()
-          when '2'
-            result = number1.to_i() - number2.to_i()
-          when '3'
-            result = number1.to_i() * number2.to_i()
-          when '4'
-            result = number1.to_f() / number2.to_f()
-  end
+           when '1'
+             number1.to_i() + number2.to_i()
+           when '2'
+             number1.to_i() - number2.to_i()
+           when '3'
+             number1.to_i() * number2.to_i()
+           when '4'
+             number1.to_f() / number2.to_f()
+           end
 
   prompt("The result is #{result}")
 
