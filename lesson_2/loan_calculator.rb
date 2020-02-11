@@ -1,7 +1,32 @@
 # loan_calculator.rb
+require 'yaml'
+MESSAGES = YAML.load_file('loan_calculator_messages.yml')
 
-def prompt(message)
-  puts "=> #{message}"
+loop do
+  puts("=> English (en) or Spanish (es)? / Inglés (en) o español (es)?")
+  lang_answer = gets.chomp
+  lang_answer.downcase()
+  if lang_answer.include?('en') || lang_answer.include?('english')
+    puts("=> Language set to ENGLISH.")
+    LANGUAGE = 'en'
+    break
+  elsif lang_answer.include?('es') || lang_answer.include?('spanish')
+    puts("=> Idioma configurado en ESPAÑOL.")
+    LANGUAGE = 'es'
+    break
+  else
+    puts("=> Error, please input language preference. /
+    Error, ingrese la preferencia de idioma.")
+  end
+end
+
+def messages(message, lang='en')
+  MESSAGES[lang][message]
+end
+
+def prompt(key)
+  message = messages(key, LANGUAGE)
+  Kernel.puts("=> #{message}")
 end
 
 def integer_or_float(num)
@@ -24,57 +49,45 @@ def valid_float(num)
   num.to_f().to_s() == num
 end
 
-prompt("Welcome to the Mortgage / Car Loan calculator!")
+prompt('welcome')
 
-name = ''
 loop do
-  prompt("What is your name?")
-  name = gets.chomp
-  if name.empty?()
-    prompt("Please make sure to enter your name.")
-  else
-    break
-  end
-end
-
-prompt("Hello #{name}! Lets start calculating!")
-loop do # main loop
   loan_amount = ''
   loop do
-    prompt("What is the loan amount total?")
+    prompt('loan_amount')
     loan_amount = gets.chomp
     if valid?(loan_amount)
       loan_amount = integer_or_float(loan_amount)
       break
     else
-      prompt("Hmm... That doesn't look like a proper value. Please try again.")
+      prompt('num_error')
     end
   end
 
   apr_amount = ''
   loop do
-    prompt("What APR are you getting on this loan?")
+    prompt('apr_amount')
     apr_amount = gets.chomp
     if apr_amount.include? '.'
-      prompt("Please enter it as a whole number.")
+      prompt('apr_float_error')
     elsif valid?(apr_amount)
       apr_amount = integer_or_float(apr_amount)
       apr_amount = apr_amount.to_f() * 0.01 # Makes this a percentage decimal.
       break
     else
-      prompt("Hmm... That doesn't look like a proper value. Please try again.")
+      prompt('num_error')
     end
   end
 
   loan_duration = ''
   loop do
-    prompt("What is the duration of the loan in months?")
+    prompt('loan_duration')
     loan_duration = gets.chomp
     if valid?(loan_duration)
       loan_duration = integer_or_float(loan_duration)
       break
     else
-      prompt("Hmm... That doesn't look like a proper value. Please try again.")
+      prompt('num_error')
     end
   end
 
@@ -83,11 +96,11 @@ loop do # main loop
   monthly_payment = loan_amount * (monthly_interest / (1 -
     (1 + monthly_interest)**(-(loan_duration))))
 
-  prompt("Your monthly payment will be #{monthly_payment.round(2)}.")
-
-  prompt("Do you want to calculate another loan? (Y to continue)")
+  prompt('payment_statement')
+  puts("=> $#{monthly_payment.round(2)}")
+  prompt('again')
   answer = gets.chomp
   break unless answer.downcase().start_with?('y')
 end
 
-prompt("Thank you for using the Loan Calcualtor. Goodbye!")
+prompt('goodbye')

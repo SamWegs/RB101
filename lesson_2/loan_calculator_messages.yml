@@ -1,0 +1,26 @@
+# loan_calculator_messages.yml
+en:
+  welcome: "Welcome to the Loan Calculator!"
+  hello: "Hello "
+  calc: "Lets start calculating!"
+  loan_amount: "What is the loan amount total?"
+  num_error: "Hmm... That doesn't look like a proper value. Please try again."
+  apr_amount: "What APR are you getting on this loan?"
+  apr_float_error: "Please enter it as a whole number."
+  loan_duration: "What is the duration of the loan in months?"
+  payment_statement: "Your monthly payment will be:"
+  again: "Do you want to calculate another loan? (Y to continue)"
+  goodbye: "Thank you for using the Loan Calcualtor. Goodbye!"
+
+es:
+  welcome: "¡Bienvenido a la Calculadora de préstamos!"
+  hello: "Hola "
+  calc: "¡Comencemos a calcular!"
+  loan_amount: "¿Cuál es el monto total del préstamo?"
+  num_error: "Hmm ... Eso no parece un valor adecuado. Inténtalo de nuevo."
+  apr_amount: "¿Qué APR está recibiendo de este préstamo?"
+  apr_float_error: "Por favor ingréselo como un número entero."
+  loan_duration: "¿Cuál es la duración del préstamo en meses?"
+  payment_statement: "Su pago mensual será:"
+  again: "¿Quieres calcular otro préstamo? (Y para continuar)"
+  goodbye: "Gracias por usar la Calculadora de préstamos. ¡Adiós!"
