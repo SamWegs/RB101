@@ -1,9 +1,11 @@
-VALID_CHOICES = %w(rock paper scissors)
+VALID_CHOICES = ['rock', 'paper', 'scissors', 'lizard', 'spock']
 
 def win?(first, second)
-  (first == 'rock' && second == 'scissors') ||
-    (first == 'paper' && second == 'rock') ||
-    (first == 'scissors' && second == 'paper')
+  (first == 'rock' && (second == 'scissors' || second == 'lizard')) ||
+    (first == 'paper' && (second == 'rock' ||second == 'spock')) ||
+    (first == 'scissors' && (second == 'paper' || second == 'lizard')) ||
+    (first == 'lizard' && (second == 'spock' || second == 'paper')) ||
+    (first == 'spock' && (second == 'scissors' || second == 'rock'))
 end
 
 def prompt(message)
