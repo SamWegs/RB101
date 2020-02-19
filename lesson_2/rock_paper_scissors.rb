@@ -1,19 +1,21 @@
 VALID_CHOICES = ['rock', 'paper', 'scissors', 'lizard', 'spock']
 VALID_CHOICES_SHORT = ['r', 'p', 'sc', 'l', 'sp']
+user_score = 0
+computer_score = 0
 
 def convert_abrv_name(input)
-  result = case input
-          when 'r'
-            'rock'
-          when 'p'
-            'paper'
-          when 'sc'
-            'scissors'
-          when 'l'
-            'lizard'
-          when 'sp'
-            'spock'
-          end
+  case input
+  when 'r'
+    'rock'
+  when 'p'
+    'paper'
+  when 'sc'
+    'scissors'
+  when 'l'
+    'lizard'
+  when 'sp'
+    'spock'
+  end
 end
 
 def win?(first, second)
@@ -38,24 +40,9 @@ def display_results(player, computer)
   end
 end
 
-def score_board(player, computer)
-  if win?(player, computer)
-    user_score += 1
-    ("User Score: #{user_score} | Computer Score: #{computer_score}")
-  elsif win?(computer, player)
-    computer_score += 1
-    ("User Score: #{user_score} | Computer Score: #{computer_score}")
-  else
-    ("No points awarded")
-  end
-end
-
-
-
 loop do
   choice = ''
-  user_score = 0
-  computer_score = 0
+  
   loop do
     prompt("Choose one: #{VALID_CHOICES.join(', ')}")
     prompt("or choose: #{VALID_CHOICES_SHORT.join(', ')}")
@@ -74,13 +61,21 @@ loop do
 
   computer_choice = VALID_CHOICES.sample
 
-  Kernel.puts("You chose: #{choice.upcase()}. Computer chose: #{computer_choice.upcase()}.")
+  Kernel.puts("You chose: #{choice.upcase()}. Computer chose:
+  #{computer_choice.upcase()}.")
 
   prompt(display_results(choice, computer_choice))
 
- 
-
-  prompt(score_board(choice, computer_choice))
+  if display_results(choice, computer_choice).include?("You won")
+    user_score += 1
+    prompt("User Score: #{user_score} | Computer Score: #{computer_score}")
+  elsif display_results(choice, computer_choice).include?("Computer won")
+    computer_score += 1
+    prompt("User Score: #{user_score} | Computer Score: #{computer_score}")
+  else
+    prompt("No points awarded... User Score: #{user_score} | Computer Score:
+      #{computer_score}")
+  end
 
   prompt("Do you want to play again?")
   answer = Kernel.gets().chomp()
