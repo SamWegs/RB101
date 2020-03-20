@@ -19,11 +19,16 @@ def convert_abrv_name(input)
 end
 
 def win?(first, second)
-  (first == 'rock' && (second == 'scissors' || second == 'lizard')) ||
-  (first == 'paper' && (second == 'rock' ||second == 'spock')) ||
-  (first == 'scissors' && (second == 'paper' || second == 'lizard')) ||
-  (first == 'lizard' && (second == 'spock' || second == 'paper')) ||
-  (first == 'spock' && (second == 'scissors' || second == 'rock'))
+  (first == 'rock' && (second == 'scissors')) ||
+    (first == 'rock' && (second == 'lizard')) ||
+    (first == 'paper' && (second == 'rock')) ||
+    (first == 'paper' && (second == 'spock')) ||
+    (first == 'scissors' && (second == 'paper')) ||
+    (first == 'scissors' && (second == 'lizard')) ||
+    (first == 'lizard' && (second == 'spock')) ||
+    (first == 'lizard' && (second == 'paper')) ||
+    (first == 'spock' && (second == 'scissors')) ||
+    (first == 'spock' && (second == 'rock'))
 end
 
 def prompt(message)
@@ -42,16 +47,12 @@ end
 
 loop do
   choice = ''
-  
   loop do
     prompt("Choose one: #{VALID_CHOICES.join(', ')}")
     prompt("or choose: #{VALID_CHOICES_SHORT.join(', ')}")
     choice = Kernel.gets().chomp()
-    
-    
-
     if VALID_CHOICES.include?(choice) || VALID_CHOICES_SHORT.include?(choice)
-        break
+      break
     else
       prompt("That's not a valid choice.")
     end
