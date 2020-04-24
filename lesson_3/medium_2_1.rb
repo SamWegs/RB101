@@ -1,9 +1,9 @@
 def fun_with_ids
   #sets the initial values which allows variables to obtain an object_id
-  a_outer = 42
-  b_outer = "forty two"
-  c_outer = [42]
-  d_outer = c_outer[0]
+  a_outer = 42 #ID 85
+  b_outer = "forty two" #ID 41351800
+  c_outer = [42] #ID 41351780
+  d_outer = c_outer[0] #ID 85
 
   a_outer_id = a_outer.object_id
   b_outer_id = b_outer.object_id
@@ -31,10 +31,10 @@ def fun_with_ids
     puts
 
     #New values assigns new object ID's for the outter variables
-    a_outer = 22
-    b_outer = "thirty three"
-    c_outer = [44]
-    d_outer = c_outer[0]
+    a_outer = 22 #Change ID 45
+    b_outer = "thirty three" #Change ID 351220
+    c_outer = [44] #Change ID 41351200
+    d_outer = c_outer[0] #Change ID 89
 
     puts "a_outer inside after reassignment is #{a_outer} with an id of: #{a_outer_id} before and: #{a_outer.object_id} after."
     puts "b_outer inside after reassignment is #{b_outer} with an id of: #{b_outer_id} before and: #{b_outer.object_id} after."
@@ -43,6 +43,7 @@ def fun_with_ids
     puts
 
     # Obtain the objects ID's to the inner variable
+    # Sets the new ID's
     a_inner = a_outer
     b_inner = b_outer
     c_inner = c_outer
